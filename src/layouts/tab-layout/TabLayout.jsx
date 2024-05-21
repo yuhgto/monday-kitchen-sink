@@ -1,4 +1,4 @@
-import classes from "./TabLayout.scss";
+import classes from "./TabLayout.module.scss";
 import { CodeBlock } from "react-code-blocks";
 import {
   AttentionBox,
@@ -8,8 +8,7 @@ import {
   TabPanel,
   TabPanels,
 } from "monday-ui-react-core";
-
-const attentionBoxText = "hello";
+const attentionBoxText = "hello world let's start building a great app\nthat will take over the world";
 
 // TODO: generate attention box text from context
 //Some example what you can do with context, read more here: https://developer.monday.com/apps/docs/mondayget#requesting-context-and-settings-data
@@ -26,17 +25,20 @@ const TabLayout = (props) => {
           <Tab>App</Tab>
           <Tab>Code</Tab>
         </TabList>
-        <TabPanels>
-          <TabPanel className="monday-storybook-tabs_bg-color">
+        <TabPanels animationDirection={TabPanels.animationDirections.LTR}>
+          <TabPanel>
+            <div className={classes.appTabContent}>
             <AttentionBox
               title="Hello Monday Apps!"
               text={attentionBoxText}
               type="success"
             />
+            </div>
           </TabPanel>
-          <TabPanel className="monday-storybook-tabs_bg-color">
+          <TabPanel>
             {/* TODO: add a  code block component - https://react-code-blocks-rajinwonderland.vercel.app/?path=/docs/codeblock--add-a-scrollbar */}
             <CodeBlock
+              className={classes.codeDisplayBlock}
               text={`<AttentionBox
   title="Hello Monday Apps!"
   text={attentionBoxText}
