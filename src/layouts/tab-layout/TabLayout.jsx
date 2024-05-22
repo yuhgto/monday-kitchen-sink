@@ -1,56 +1,63 @@
 import classes from "./TabLayout.module.scss";
-import { CodeBlock } from "react-code-blocks";
+import { CodeBlock, nord } from "react-code-blocks";
 import {
-  AttentionBox,
   Tab,
   TabList,
   TabsContext,
   TabPanel,
   TabPanels,
+  Dropdown,
 } from "monday-ui-react-core";
-const attentionBoxText = "hello world let's start building a great app\nthat will take over the world";
-
-// TODO: generate attention box text from context
-//Some example what you can do with context, read more here: https://developer.monday.com/apps/docs/mondayget#requesting-context-and-settings-data
-// const attentionBoxText = `Hello, your user_id is: ${
-//   context ? context.user.id : "still loading"
-// }.
-// Let's start building your amazing app, which will change the world!`;
+import AttentionBoxLayout from "../../examples/attention-box-layout/AttentionBoxLayout";
+import ButtonExample from "../../examples/button-example/ButtonExample";
+import { codeExamples } from "../../constants/code-examples";
+import { useState } from "react";
 
 const TabLayout = (props) => {
+  const [selectedApp, setSelectedApp] = useState('AttentionBox');
+
+  function handleColumnSelect(e) {
+    setSelectedApp(e?.value);
+  }
+
+  const dropdownOptions = [
+    {label: 'Button', value: 'Button'},
+    {label: 'Attention Box', value: 'AttentionBox'},
+  ]
+
   return (
     <div className={classes.tabsWrapper}>
+      <Dropdown
+        // className={classes.se}
+        options={dropdownOptions}
+        onChange={handleColumnSelect}
+        placeholder={"Select an example to see"}
+        size="small"
+      />
       <TabsContext>
         <TabList>
           <Tab>App</Tab>
           <Tab>Code</Tab>
         </TabList>
         <TabPanels animationDirection={TabPanels.animationDirections.LTR}>
-          <TabPanel>
+          <TabPanel className="monday-storybook-tabs_bg-color">
             <div className={classes.appTabContent}>
-            <AttentionBox
-              title="Hello Monday Apps!"
-              text={attentionBoxText}
-              type="success"
-            />
+              {selectedApp === 'AttentionBox' ? <AttentionBoxLayout /> : <ButtonExample />}
             </div>
           </TabPanel>
           <TabPanel>
-            {/* TODO: add a  code block component - https://react-code-blocks-rajinwonderland.vercel.app/?path=/docs/codeblock--add-a-scrollbar */}
-            <CodeBlock
-              className={classes.codeDisplayBlock}
-              text={`<AttentionBox
-  title="Hello Monday Apps!"
-  text={attentionBoxText}
-  type="success"
-/>`}
-              customStyle={{
-                overflow: "scroll",
-              }}
-              theme="a11yDark"
-              showLineNumbers={true}
-              language="jsx"
-            />
+            <div className={classes.codeDisplayBlock}>
+              <CodeBlock
+                text={
+                  selectedApp === 'AttentionBox'
+                    ? codeExamples.AttentionBox.code
+                    : codeExamples.Button.code
+                }
+                theme={nord}
+                showLineNumbers={true}
+                language="jsx"
+              />
+            </div>
           </TabPanel>
         </TabPanels>
       </TabsContext>
