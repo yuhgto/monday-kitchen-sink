@@ -8,56 +8,36 @@ import {
   TabPanels,
   Dropdown,
 } from "monday-ui-react-core";
-import AttentionBoxLayout from "../../examples/attention-box-layout/AttentionBoxLayout";
-import ButtonExample from "../../examples/button-example/ButtonExample";
 import { codeExamples } from "../../constants/code-examples";
-import { useState } from "react";
 
-const TabLayout = (props) => {
-  const [selectedApp, setSelectedApp] = useState('AttentionBox');
-
-  function handleColumnSelect(e) {
-    setSelectedApp(e?.value);
-  }
-
-  const dropdownOptions = [
-    {label: 'Button', value: 'Button'},
-    {label: 'Attention Box', value: 'AttentionBox'},
-  ]
+const TabLayout = ({ExampleComponent}) => {
 
   return (
     <div className={classes.tabsWrapper}>
-      <Dropdown
-        // className={classes.se}
-        options={dropdownOptions}
-        onChange={handleColumnSelect}
-        placeholder={"Select an example to see"}
-        size="small"
-      />
       <TabsContext>
-        <TabList>
-          <Tab>App</Tab>
-          <Tab>Code</Tab>
+        <TabList size="sm">
+          <Tab className={classes.tabWrapper}>App Preview</Tab>
+          <Tab className={classes.tabWrapper}>Code Sample</Tab>
+          <Tab className={classes.tabWrapper}>Documentation</Tab>
         </TabList>
-        <TabPanels animationDirection={TabPanels.animationDirections.LTR}>
+        <TabPanels animationDirection={TabPanels.animationDirections.LTR} className={classes.tabPanelContainer}>
           <TabPanel className="monday-storybook-tabs_bg-color">
             <div className={classes.appTabContent}>
-              {selectedApp === 'AttentionBox' ? <AttentionBoxLayout /> : <ButtonExample />}
+              <ExampleComponent />
             </div>
           </TabPanel>
           <TabPanel>
             <div className={classes.codeDisplayBlock}>
               <CodeBlock
-                text={
-                  selectedApp === 'AttentionBox'
-                    ? codeExamples.AttentionBox.code
-                    : codeExamples.Button.code
-                }
+                text={codeExamples.AttentionBox.code}
                 theme={nord}
                 showLineNumbers={true}
                 language="jsx"
               />
             </div>
+          </TabPanel>
+          <TabPanel>
+            This is some documentation blah blah blah
           </TabPanel>
         </TabPanels>
       </TabsContext>

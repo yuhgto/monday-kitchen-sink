@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@mondaycom/apps-sdk": "^2.1.2",
-    "monday-sdk-js": "^0.5.0"
+    "monday-sdk-js": "^0.5.0",
+    "react-router-dom": "^6.23.1"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,12 +36,12 @@
     "concurrently": "^5.2.0",
     "cross-port-killer": "^1.2.1",
     "eslint-config-react-app": "^7.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
-    "sass": "^1.54.8",
     "monday-ui-react-core": "^2.109.0",
     "monday-ui-style": "^0.6.1",
-    "react-code-blocks": "^0.1.6"
+    "react": "^18.2.0",
+    "react-code-blocks": "^0.1.6",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.54.8"
   }
 }
