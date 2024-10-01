@@ -17,22 +17,57 @@ Use this link to install the app in your demo account.
 </a>
 
 
-If you're a developer who wants to build apps for the monday ecosystem, sign up for a free developer account. 
+If you're a developer who wants to build apps for the monday ecosystem, you can sign up for a free developer account. 
 
-## Start app in dev mode
+## Explore the examples
+
+Once you've installed the app, there are two ways to use it: 
+- Start from the bundled template
+- Add one of the app features to your board
+
+### Start from template
+
+The app comes with a template to guide you through the monday apps framework. To use the template: 
+1. Open the monday Template Center (+ icon in leftpane > Template Center)
+2. Search for "Kitchen Sink Sample Boards"
+3. Add the template to your workspace
+
+The template contains 3 parts: 
+- A board that explains the features of the app & monday
+- A dashboard with the app pre-loaded on it
+- A standalone Custom Object view, to use the app without a board or dashboard
+
+![Sample board](./src/assets/images/Kitchen-sink-example-board.png)
+
+### Add an app feature to your board
+
+You can also open one of the app's features. Open a board and add any of the following features: 
+- Board view
+- Item view
+- Object view (add this from the leftpane)
+- Dashboard widget
+- Account settings view (open this from the settings of another feature)
+- AI assistant in board header
+- AI assistant when writing an update section
+- Item menu
+- Group menu
+- Batch action menu
+
+## Run the app locally
+
+After downloading the source code, follow these steps to run the app locally:
 
 1. Run `nvm use` – this app uses node 18
 2. Run `npm install` then `npm run start`
 3. Paste monday tunnel URL into the feature you want
 
-## Build app
+### Build the app
 
-1. `node src/scripts/generateCodeSamples.js` to generate code samples
-2. `npm run build` to generate build folder
-3. Zip files in build folder (not folder itself)
-4. Upload ZIP to monday
+1. `npm run build` to generate build folder
+2. Zip files in build folder (not folder itself)
+3. Upload ZIP to monday
 
-## How to add a sample
+### Add a new code sample
 
 1. Add component folder to src/examples/ folder
 2. Add a route:
@@ -46,6 +81,9 @@ If you're a developer who wants to build apps for the monday ecosystem, sign up 
   3. Run `npm run build:generate-samples` to update sample code
 
 ### Working boilerplate:
+
+Use the following boilerplate to start a new sample:
+
 ```js
 import React, { useState } from "react";
 import mondaySdk from "monday-sdk-js";
@@ -107,51 +145,6 @@ const GetAppContext = () => {
 export default GetAppContext;
 ```
 
-# old info: 
+## Getting help
 
-## Overview
-
-This is the "Kitchen Sink" example Monday app.
-<br>It should be used as a board view, connected to a board and fetching all items data from it.
-<br>Please notice that listening to itemIds via SDK is not working in preview mode at this point. this feature allows you to use Monday filters to get relevant items to the application.
-
-<br>This app demonstrates how to use:
-
-- [SDK](https://github.com/mondaycom/monday-sdk-js)
-- [API](https://api.developer.monday.com/docs)
-
-## Run the project
-
-In the project directory, you should run:
-
-### `npm install`
-
-And then to run an application with automatic virtual ngrok tunnel, run:
-
-### `npm start`
-
-Visit http://localhost:4040/status and under "command_line section" find the URL. This is the public URL of your app, so you can use it to test it.
-F.e.: https://021eb6330099.ngrok.io
-
-## Configure Monday App
-
-1. Open monday.com, login to your account and go to a "Developers" section.
-2. Create a new Application
-3. Open "OAuth & Permissions" section and add "boards:read" and "boards:write" scope
-4. Open "Features" section and create a new "Boards View" feature
-5. Open "View setup" tab and fulfill in "Custom URL" field your ngrok public URL, which you got previously (f.e. https://021eb6330099.ngrok.io)
-6. Click "Boards" button and choose one of the boards with some data in it.
-7. Click "Preview button"
-8. Enjoy the Kitchen Sink app!
-## Release your app
-
-1. Run script
-
-### `npm run build`
-
-2. Zip your "./build" folder
-3. Open "Build" tab in your Feature
-4. Click "New Build" button
-5. Click "Upload" radio button and upload zip file with your build
-6. Go to any board and add your just released view
-7. Enjoy!
+Need help or have any questions? Post in the [monday developer community](https://community.monday.com/c/developers/8) or [open a support ticket.](https://support.monday.com/hc/en-us/requests/new?ticket_form_id=13855862562962)
