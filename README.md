@@ -17,7 +17,7 @@ Use this link to install the app in your demo account.
 </a>
 
 
-If you're a developer who wants to build apps for the monday ecosystem, you can sign up for a free developer account. 
+*If you're building & testing apps for the monday ecosystem, you can [sign up for a free developer account.](https://auth.monday.com/users/sign_up_new?developer=true&utm_source=github&utm_campaign=kitchensink)*
 
 ## Explore the examples
 
@@ -27,15 +27,15 @@ Once you've installed the app, there are two ways to use it:
 
 ### Start from template
 
-The app comes with a template to guide you through the monday apps framework. To use the template: 
+To use the template: 
 1. Open the monday Template Center (+ icon in leftpane > Template Center)
 2. Search for "Kitchen Sink Sample Boards"
 3. Add the template to your workspace
 
-The template contains 3 parts: 
+The template will guide you through the monday apps framework. It contains 3 parts: 
 - A board that explains the features of the app & monday
-- A dashboard with the app pre-loaded on it
 - A standalone Custom Object view, to use the app without a board or dashboard
+- A dashboard with the app pre-loaded
 
 ![Sample board](./src/assets/images/Kitchen-sink-example-board.png)
 
