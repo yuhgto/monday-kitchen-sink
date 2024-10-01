@@ -1,78 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "monday-ui-react-core/dist/main.css";
 import mondaySdk from "monday-sdk-js";
-// import deleteItemConstants from "../DeleteItem/DeleteItemConstants";
-import RenderItems from "../../components/RenderItems/RenderItems";
+import deleteItemConstants from "../DeleteItem/DeleteItemConstants";
+import RenderItems from "../RenderItems/RenderItems.jsx";
 // import { Context } from "../../components/context/ContextProvider";
-// import Instructions from "../../components/common/Instructions/Instructions";
-// import CodeBlock from "../../components/common/CodeBlock/CodeBlock";
-// import ActionHeader from "../../components/common/ActionHeader/ActionHeader";
-
+import CodeBlock from "../../components/common/CodeBlock/CodeBlock";
+import Instructions from "../../components/common/Instructions/Instructions";
+import ActionHeader from "../../components/common/ActionHeader/ActionHeader";
+// import { Loader } from "monday-ui-react-core";
+import { useBoardContext } from "../../hooks/UseBoardContext.js";
+import CodeSamples from "../../constants/codeSamples";
+// @mondaycom-codesample-start
 const monday = mondaySdk();
 
 const DeleteItem = () => {
-  // const { items, boardName, updateItems } = useContext(Context);
-
-  // TODO: redo the items, board name, and updateItems hook in this component
-  const [items, updateItems] = useState([]);
-  const [boardName, setBoardName] = useState('');
-  const [boardContext, setBoardContext] = useState();
-
-  useEffect(() => {
-    monday.listen('context', (res) => {
-      console.log(res);
-      setBoardContext(res?.data);
-    })
-  }, [])
-
-  useEffect(() => {
-    monday.api(`query ($boardIds: [ID!], $limit: Int) {
-      boards(ids: $boardIds, limit: $limit) {
-        name
-        items_page(limit: $limit) {
-          items {
-            id
-            name
-          }
-        }
-      }
-    }`, {boardIds: boardContext?.boardIds, limit:10})
-      .then((res) => {
-        // TODO: There is an infinite loop here! please fix
-        console.log('api data received.')
-        setBoardName(res?.data?.boards[0]?.name);
-        updateItems(res?.data?.boards[0]?.items_page?.items);
-      })
-  }, [boardContext, items, boardName])
-
-  const deleteItemQuery = `mutation ($itemId: Int!) {
-    delete_item(item_id: $itemId) {
-      board {
-        items_page {
-          items {
-            id
-            name
-          }
-        }
-      }
-    }
-  }`
+  const boardContext = useBoardContext();
+  const isLoading = boardContext.isLoading;
+  const { items, boardName, updateItems } = boardContext.state;
 
   const deleteItem = (item) => {
     monday
-      .api(deleteItemQuery, {
+      .api(deleteItemConstants.deleteItemAndGetUpdatedBoardItemsQuery, {
         variables: { itemId: +item.id },
       })
       .then((res) => {
-        updateItems({ items: res.data.delete_item.board.items_page.items});
-        setBoardName(res.data.delete_item.board.name)
+        updateItems({
+          items: res.data.delete_item.board.items_page.items,
+          boardName,
+          updateItems,
+        });
       });
   };
 
   return (
     <div className="delete-item-container feature-container">
-      {/* TODO: Rename "RenderItems" as "ItemsList" */}
+      {/* @mondaycom-codesample-skip-block-start */}
+      <ActionHeader
+        action="Delete Item"
+        actionDescription="Using the api to delete selected item"
+      />
+      <div className="pagination working-with-the-board-items playground">
+      {/* @mondaycom-codesample-skip-block-end */}
       <RenderItems
+        isLoading={isLoading}
         itemsData={items}
         actionButtonContent="Delete me"
         action={(item) => {
@@ -94,13 +64,21 @@ const DeleteItem = () => {
             });
         }}
       />
-      {/* <Instructions
+    {/* @mondaycom-codesample-skip-block-start */}
+    </div>
+      <CodeBlock contentText={CodeSamples.DeleteItem.codeSample} />
+      <Instructions
         paragraphs={deleteItemConstants.deleteItemInstructionsParagraphs}
-        instructionsListItems={deleteItemConstants.deleteItemInstructionsListItems}
-        linkToDocumentation={deleteItemConstants.deleteItemInstructionslinkToDocumentation}
-      /> */}
+        instructionsListItems={
+          deleteItemConstants.deleteItemInstructionsListItems
+        }
+        linkToDocumentation={
+          deleteItemConstants.deleteItemInstructionslinkToDocumentation
+        }
+      />
+      {/* @mondaycom-codesample-skip-block-end */}
     </div>
   );
 };
-
+// @mondaycom-codesample-end
 export default DeleteItem;

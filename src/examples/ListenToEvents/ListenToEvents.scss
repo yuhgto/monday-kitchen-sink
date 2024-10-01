@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+.events-listen-container {
+  width: 100%;
+
+  aside {
+    padding: 10px;
+  }
+  .events-listen-content {
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .tabPanelContainer {
+    padding: 10px;
+    max-height: 80vh;
+    width: calc(100% - 20px);
+  }
+  
+  .tabWrapper {
+    padding-bottom: 8px;
+    padding-left: 0px;
+  }
+  
+  .tabsWrapper {
+    height: 100%;
+    overflow-x: scroll;
+  }
+  
+  .openBoardButton {
+    margin: 4px;
+  }
+
+  @media (max-width: $breakpoint-narrow) {
+  .playground {
+    min-height: 400px;
+  }}
+}

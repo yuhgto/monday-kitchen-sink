@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+
+.get-context-container {
+    width: 100%;
+  
+    aside {
+      padding: 10px;
+    }
+    .get-context-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .button {
+      width: 155px;
+      margin-top: 8px;
+    }
+}
+
+@media (max-width: $breakpoint-narrow) {
+  .playground {
+    height: 350px;
+  }
+  .code-block {
+    margin-top: 8px;
+  }
+}
+  

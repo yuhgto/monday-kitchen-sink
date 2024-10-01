@@ -1,0 +1,20 @@
+@import "../../styles/variables.scss";
+
+.loading > * {
+  margin: 10px;
+  width: 90%;
+}
+
+.working-with-the-board-items {
+  overflow: auto;
+  flex-direction: column;
+  justify-content: end;
+  position: relative;
+}
+
+@media (max-width: $breakpoint-narrow) {
+  .working-with-the-board-items {
+    overflow-y: scroll;
+    height: max-content;
+  }
+}

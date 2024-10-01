@@ -1,0 +1,16 @@
+.notice-container {
+  width: 100%;
+  .notice-content {
+    display: flex;
+    flex-direction: column;
+
+    & button {
+      width: 155px;
+      margin-top: 20px;
+    }
+  }
+  .confirm-button {
+    margin-left: 8px;
+    margin-bottom: 10px;
+  }
+}
