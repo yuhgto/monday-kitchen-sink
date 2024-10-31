@@ -4,14 +4,14 @@ This sample app contains examples of functionality you need to know when buildin
 
 ![Preview of app](./src/assets/images/kitchen-sink-app-preview-image.png)
 
-## Install the app on your demo account
+## Start here – Install the examples on your demo account
 
-Use this link to install the app in your demo account. 
+To use the examples, install the app on your demo account.
 
 <a href="https://auth.monday.com/oauth2/authorize?client_id=b1332d51359f7c186787f045f2cf6cb6&response_type=install">
   <img
     alt="Add to monday.com"
-    height="42"
+    height="80"
     src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/uploads/Tal/4b5d9548-0598-436e-a5b6-9bc5f29ee1d9_Group12441.png"
   />
 </a>
