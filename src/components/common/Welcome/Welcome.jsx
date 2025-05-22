@@ -4,7 +4,7 @@ import "./Welcome.scss";
 import Lottie from "react-lottie-player";
 
 import { lottieOptions } from "./WelcomeConstants";
-import { Button, Loader } from "monday-ui-react-core";
+import { Button, Loader, Text, Heading } from "monday-ui-react-core"; // Added Text, Heading
 import { useNavigate } from "react-router";
 import { useAppContext } from "../../../hooks/UseAppContext";
 
@@ -30,12 +30,14 @@ const Welcome = () => {
               src={mondayLogo}
               alt=""
             />
-            <div className="title">
+            {/* Use Heading for the main title */}
+            <Heading type={Heading.types.H1} className="title">
               Kitchen Sink App
-            </div>
-            <div className="subTitle">
+            </Heading>
+            {/* Use Text for the subtitle */}
+            <Text type={Text.types.TEXT1} className="subTitle">
               See practical examples of the main features of the monday API and SDK, with explanations and code samples
-            </div>
+            </Text>
             <Button
               className={"getStartedButton"}
               size={Button.sizes.MEDIUM}

@@ -36,17 +36,14 @@
       width: 50%;
 
       .title {
-        font-weight: 900;
-        font-size: 63px;
+        // font-weight and font-size are now handled by Vibe <Heading H1>
       }
 
       .subTitle {
-        margin-top: 24px;
-        margin-bottom: 8px;
-        font-weight: 300;
-        font-size: 18px;
-        line-height: 35px;
-        width: 80%;
+        margin-top: 24px; // Keep layout style
+        margin-bottom: 8px; // Keep layout style
+        // font-weight, font-size, line-height are now handled by Vibe <Text TEXT1>
+        width: 80%; // Keep layout style
       }
 
       .getStartedButton {
@@ -63,9 +60,8 @@
     }
 
     @media (height <= 500px) {
-      .title {
-        font-size: 48px;
-      }
+      // .title font-size adjustment removed, Vibe Heading might handle responsiveness
+      // or further adjustments would need Vibe-specific approaches.
     }
 
     @media (height <= 250px) {
