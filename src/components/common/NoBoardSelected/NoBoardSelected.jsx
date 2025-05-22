@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../../context/ContextProvider";
-import Loader from "monday-ui-react-core/dist/Loader";
+// Updated import for Loader and added Heading
+import { Loader, Heading } from "monday-ui-react-core"; 
 import EmptyBoardSVG from "../../../assets/icons/empty-board.svg";
 import ArrowImage from "../../../assets/icons/right-up-arrow.png";
 
@@ -9,16 +10,16 @@ const NoBoardSelected = () => {
   if (isLoading) {
     return (
       <div style={{ height: 48, width: 48, margin: "auto" }}>
-        <Loader />
+        <Loader /> 
       </div>
     );
   } else if (!boardName) {
     return (
       <div className="empty-board-container">
         <img className="empty-board-image" src={EmptyBoardSVG} alt="" />
-        <h2>No board selected</h2>
+        <Heading type={Heading.types.H2}>No board selected</Heading>
         <div className="chooseBoardContainer">
-          <h4>Please add items or select other board.</h4>
+          <Heading type={Heading.types.H4}>Please add items or select other board.</Heading>
           <img className="pointer-image" src={ArrowImage} alt="" />
         </div>
       </div>
@@ -27,8 +28,8 @@ const NoBoardSelected = () => {
     return (
       <div className="empty-board-container">
         <img className="empty-board-image" src={EmptyBoardSVG} alt="" />
-        <h2>Board is empty</h2>
-        <h4>Please add items or select other board.</h4>
+        <Heading type={Heading.types.H2}>Board is empty</Heading>
+        <Heading type={Heading.types.H4}>Please add items or select other board.</Heading>
       </div>
     );
   }

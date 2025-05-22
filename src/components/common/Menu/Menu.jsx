@@ -4,7 +4,7 @@ import "./Menu.scss";
 import { menuOptions } from "./MenuConstants";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../hooks/UseAppContext";
-import { Flex, Chips, ListItem, ListTitle, List, AttentionBox } from "monday-ui-react-core";
+import { Flex, Chips, ListItem, ListTitle, List, AttentionBox, Heading, Text } from "@vibe/core";
 import _ from "lodash";
 
 const actionAppFeatures = [
@@ -18,6 +18,9 @@ const actionAppFeatures = [
 const Menu = () => {
   const history = useNavigate();
   const appContext = useAppContext();
+  const theme = appContext?.data?.theme ?? "light";
+  const colorIfDarkMode = (theme === "dark" || theme === "hacker_theme" || theme === "black") ? "onInverted" : "primary";
+
   const [featureType, setFeatureType] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [visibleOptions, setVisibleOptions] = useState([]);
@@ -53,7 +56,7 @@ const Menu = () => {
   const renderSection = (name, subOptions) => {
     return (
       <div key={name} className="sectionContainer">
-        <div className="title">{name}</div>
+        <Heading type={"h2"} color={colorIfDarkMode} className="title">{name}</Heading>
         <div className="subItemsContainer">
           {subOptions.map(({ image, background, name, location }) => (
             <MenuButton
@@ -62,6 +65,7 @@ const Menu = () => {
               background={background}
               title={name}
               onPress={() => history(location)}
+              color={colorIfDarkMode}
             />
           ))}
         </div>
@@ -72,11 +76,11 @@ const Menu = () => {
     return (
       <div className="heroContainer">
         <div className="textContainer">
-          <div className="title">Get started with ready-made examples</div>
-          <div className="subTitle">
+          <Heading type={"h1"} color={"onInverted"} className="title" maxLines={2}>Get started with ready-made examples</Heading>
+          <Text type="text1" color={"onInverted"} className="subTitle" maxLines={6}>
             Explore the core features of the monday app framework here. Each example has a playground to test each feature, & a code sample. 
             Once you're done, open it in another app feature to keep learning! 
-          </div>
+          </Text>
         </div>
         <img alt="" src={require("./assets/hero_image.png")} className="heroImage" />
       </div>

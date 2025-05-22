@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import { createRoot } from "react-dom/client";
 import "./index.scss";
+import { ThemeProvider } from "monday-ui-react-core";
+import { useAppContext } from "./hooks/UseAppContext";
 import {
     createBrowserRouter,
     RouterProvider,
@@ -148,7 +150,28 @@ const router = createBrowserRouter([
   ])
   
 //   const root = createRoot();
-ReactDOM.render(<RouterProvider router={router} />, document.getElementById("root"));
+// ReactDOM.render(<RouterProvider router={router} />, document.getElementById("root"));
+
+const AppWithTheme = () => {
+  const appContext = useAppContext();
+
+  if (appContext.isLoading) {
+    // Optional: render a global loader
+    return <div>Loading theme...</div>; 
+  }
+
+  // Determine theme for ThemeProvider. Default to 'light' if undefined.
+  const currentTheme = appContext.theme;
+  console.log("AppWithTheme: Applying theme - ", currentTheme); // For debugging
+
+  return (
+    <ThemeProvider systemTheme={currentTheme}> {/* This is an assumption. Prop could be 'themeType', etc. */}
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
+};
+
+ReactDOM.render(<AppWithTheme />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

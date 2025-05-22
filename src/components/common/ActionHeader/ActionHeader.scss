@@ -31,7 +31,7 @@
   & > svg {
     position: absolute;
     right: 10px;
-    color: white;
+    // color: white; // Removed to inherit theme or use SVG's own color
     z-index: 5;
   }
   & > div.headers {

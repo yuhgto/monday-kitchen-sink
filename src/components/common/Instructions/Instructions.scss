@@ -17,24 +17,9 @@
     }
   }
 
-  h3 {
-    margin-top: 0;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #384248;
-    font-size: 24px;
-    line-height: 30px;
-    word-wrap: break-word;
-  }
-  p,
-  li {
-    line-height: 1.5;
-    color: rgb(77, 85, 90);
-    font-weight: 500;
-  }
-  p {
-    display: block;
-  }
+  // h3 styling removed as <Heading> component from Vibe is used.
+  // p, li text styling removed as <Text> component from Vibe is used.
+  // p display:block removed.
   a {
     color: var(--link-color);
   }
