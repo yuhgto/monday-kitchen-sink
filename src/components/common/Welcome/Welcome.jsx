@@ -16,6 +16,29 @@ const Welcome = () => {
   const appFeatureType = appContext?.data?.appFeature?.type;
   const isLoading = appContext.isLoading;
 
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    const body = document.body;
+    // Remove potential old theme classes
+    const classesToRemove = [];
+    for (let i = 0; i < body.classList.length; i++) {
+      if (body.classList[i].startsWith('theme-')) {
+        classesToRemove.push(body.classList[i]);
+      }
+    }
+    if (classesToRemove.length > 0) {
+      body.classList.remove(...classesToRemove);
+    }
+
+    if (appContext.theme) {
+      body.classList.add(`theme-${appContext.theme}`);
+      console.log(`Applied theme: theme-${appContext.theme}`); // For debugging
+    }
+  }, [appContext.theme, isLoading]);
+
   return isLoading ? (
     <div className="loading">
       <Loader size={64}/>

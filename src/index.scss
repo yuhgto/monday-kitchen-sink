@@ -166,3 +166,22 @@ a {
   height: 100%;
   padding: 8px;
 }
+
+// Theme-specific styles
+body.theme-light {
+  background-color: #FFFFFF;
+  color: #323338;
+
+  a {
+    color: #007bff; // Standard link blue
+  }
+}
+
+body.theme-dark {
+  background-color: #1C1C1E;
+  color: #E0E0E0;
+
+  a {
+    color: #6EBAFF; // Lighter blue for dark mode
+  }
+}

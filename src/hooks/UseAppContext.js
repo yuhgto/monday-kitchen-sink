@@ -9,9 +9,11 @@ export function useAppContext() {
 
     useEffect(() => {
         const unsubscribe = monday.listen('context', (contextEvent) => {
-            setAppContext((previousContext) =>
-                isMatch(previousContext, contextEvent) ? previousContext : {isLoading: false, ...contextEvent}
-            );
+            console.log("Received context event data:", contextEvent.data); // Log data structure
+            setAppContext((previousContext) => {
+                const newContext = {isLoading: false, ...contextEvent, theme: contextEvent.data.theme };
+                return isMatch(previousContext, newContext) ? previousContext : newContext;
+            });
         })
         return () => {
             unsubscribe();
