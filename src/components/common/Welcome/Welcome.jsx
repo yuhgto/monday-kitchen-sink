@@ -4,17 +4,21 @@ import "./Welcome.scss";
 import Lottie from "react-lottie-player";
 
 import { lottieOptions } from "./WelcomeConstants";
-import { Button, Loader, Text, Heading } from "monday-ui-react-core"; // Added Text, Heading
+import { Button, Loader, Text, Heading } from "@vibe/core"; // Added Text, Heading
 import { useNavigate } from "react-router";
 import { useAppContext } from "../../../hooks/UseAppContext";
 
 const mondayLogo = require("../../../assets/images/logo.png");
+const mondayLogoDark = require("../../../assets/images/logo_dark.png");
 
 const Welcome = () => {
   const history = useNavigate();
   const appContext = useAppContext();
-  // const appFeatureType = appContext?.data?.appFeature?.type; // Removed as appFeatureType is unused
   const isLoading = appContext.isLoading;
+  const theme = appContext?.data?.theme ?? "light";
+  const colorIfDarkMode = (theme === "dark" || theme === "hacker_theme" || theme === "black") ? "onInverted" : "primary";
+  const logoIfDarkMode = (theme === "dark" || theme === "hacker_theme" || theme === "black") ? mondayLogoDark : mondayLogo;
+  console.log({appContext, theme, colorIfDarkMode})
 
   return isLoading ? (
     <div className="loading">
@@ -27,15 +31,13 @@ const Welcome = () => {
           <div className="textContainer">
             <img
               className="logo"
-              src={mondayLogo}
+              src={logoIfDarkMode}
               alt=""
             />
-            {/* Use Heading for the main title */}
-            <Heading type={Heading.types.H1} className="title">
+            <Heading type={"h1"} className="title" color={colorIfDarkMode}>
               Kitchen Sink App
             </Heading>
-            {/* Use Text for the subtitle */}
-            <Text type={Text.types.TEXT1} className="subTitle">
+            <Text type={Text.types.TEXT1} className="subTitle" color={colorIfDarkMode} maxLines={3}>
               See practical examples of the main features of the monday API and SDK, with explanations and code samples
             </Text>
             <Button

@@ -161,11 +161,11 @@ const AppWithTheme = () => {
   }
 
   // Determine theme for ThemeProvider. Default to 'light' if undefined.
-  const currentTheme = appContext.themeIdentifierString === "dark" ? "dark" : "light";
+  const currentTheme = appContext.theme;
   console.log("AppWithTheme: Applying theme - ", currentTheme); // For debugging
 
   return (
-    <ThemeProvider theme={currentTheme}> {/* This is an assumption. Prop could be 'themeType', etc. */}
+    <ThemeProvider systemTheme={currentTheme}> {/* This is an assumption. Prop could be 'themeType', etc. */}
       <RouterProvider router={router} />
     </ThemeProvider>
   );
